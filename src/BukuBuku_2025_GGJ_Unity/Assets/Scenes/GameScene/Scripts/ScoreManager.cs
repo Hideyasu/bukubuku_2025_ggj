@@ -6,24 +6,22 @@ using System;
 
 public class ScoreManager : MonoBehaviour
 {
-	int score = 0;						// スコアを設定する変数
-	[SerializeField] Text scoreText;        // 残り時間を表示する変数
+	int score = 0;
+	[SerializeField] Text scoreText;
 
-	[SerializeField] private string m_DeviceName;	// デバイス
-	private AudioClip m_AudioClip;					// オーディオ用の変数
-	private int m_LastAudioPos;						// マイクのデバイスを保存しておく変数
-	private float m_AudioLevel;						// オーディオの音量
+	[SerializeField] private string m_DeviceName;
+	private AudioClip m_AudioClip;
+	private int m_LastAudioPos;
+	private float m_AudioLevel;
 
-
-	// [SerializeField] private GameObject m_Cube;							// テストシーンで使用したキューブ(ゲームシーンにはないのでエラーが出る)
+	[SerializeField] private GameObject m_Cube;
 	[SerializeField, Range(10, 100)] private float m_AmpGain = 10;
-	[SerializeField] public float threshold = 0.1f;     // しきい値
+	[SerializeField] public float threshold = 0.1f;
 
 
-    void Start()
+	void Start()
 	{
 		string targetDevice = "";
-
 		foreach (var device in Microphone.devices)
 		{
 			Debug.Log($"Device Name: {device}");
@@ -42,28 +40,22 @@ public class ScoreManager : MonoBehaviour
 		float[] waveData = GetUpdatedAudio();
 		if (waveData.Length == 0) return;
 
+		var firstValues = waveData.Take(10).Select(v => v.ToString("F3"));
 
-        var firstValues = waveData.Take(10).Select(v => v.ToString("F3"));
+		m_AudioLevel = waveData.Average(Mathf.Abs);
 
-        m_AudioLevel = waveData.Average(Mathf.Abs);
-        // m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * m_AudioLevel, 1); // テストシーンで長方形を変形させている部分	
+		if (m_AudioLevel > threshold)
+		{
+			score += (int)(m_AudioLevel * 100);
+		}
 
-        ////////////////////////////////////////////////////////////////////
-        // m_AmpGain や m_AudioLevel を用いてスコアの計算をする部分を実装 //
-        ////////////////////////////////////////////////////////////////////
-
-        if (m_AudioLevel > threshold)
-        {
-            score += (int)(m_AudioLevel * 100);
-        }
-
-        scoreText.text = $"{score}";			// 画面に表示されたスコアを更新していく処理
+		scoreText.text = $"{score}";
 	}
 
 	private float[] GetUpdatedAudio()
 	{
 
-		int nowAudioPos = Microphone.GetPosition(null);// nullでデフォルトデバイス
+		int nowAudioPos = Microphone.GetPosition(null);// null???f?t?H???g?f?o?C?X
 
 		float[] waveData = Array.Empty<float>();
 

@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class change : MonoBehaviour
+public class SceneJumpDrink : MonoBehaviour
 {
-    public void JumpDrinkScene()
+    public void OnStartButton()
     {
-        SceneManager.LoadScene("SelectDrinkscene");
+        SceneManager.LoadScene("SelectRoomScene");
     }
 }

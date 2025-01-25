@@ -6,26 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/Scenes/StartScene/StartScene.unity
     guid: 85c0c32104cdbd84a9fbd1b7204ec2dc
+  - enabled: 1
+    path: Assets/Scenes/SelectRoomScene/SelectRoomScene.unity
+    guid: 940d8e5bda3294884984c8aa867813ce
   - enabled: 1
     path: Assets/Scenes/SelectDrinkScene/SelectDrinkScene.unity
     guid: 74bb3eb2f9e110546a8042bb1b67b661
   - enabled: 1
     path: Assets/Scenes/GameScene/GameScene.unity
     guid: 203782082c58f6a48bff20880c8c2c7c
-  - enabled: 1
-    path: Assets/Scenes/ResultScene/ResultScene.unity
-    guid: ab24f07db484ee04cb4b9a681e396aac
-  - enabled: 1
-    path: Assets/Scenes/Researches/RoomCreate/RoomCreate.unity
-    guid: 660cf61187b4641f4bf8e8bd64407cc6
-  - enabled: 1
-    path: Assets/Scenes/Researches/RoomSelect/RoomSelect.unity
-    guid: 33e795e4a0cb44e1b8710920ce4c8081
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
