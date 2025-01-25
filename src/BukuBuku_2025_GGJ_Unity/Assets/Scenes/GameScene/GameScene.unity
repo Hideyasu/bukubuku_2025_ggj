@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12a15dc69f5664478a24a9349b5635a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 5
+  timeLimit: 50
   timerText: {fileID: 1411641603}
   sceneName: 
 --- !u!1 &1497161320
@@ -813,8 +813,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24cd03b5ce1a074897bfbf6329ebae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 1000
   scoreText: {fileID: 1993776670}
+  m_DeviceName: "\u30DE\u30A4\u30AF\u914D\u5217 (Realtek(R) Audio)"
+  m_AmpGain: 10
+  threshold: 0.001
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
