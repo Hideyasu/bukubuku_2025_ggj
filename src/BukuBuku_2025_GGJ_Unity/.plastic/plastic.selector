@@ -1,4 +1,0 @@
-repository "BukuBuku_2025_GGJ_Unity@momotech@cloud"
-  path "/"
-    br "/main"
-    co "/main"

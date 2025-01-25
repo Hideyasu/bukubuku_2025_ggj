@@ -6,7 +6,7 @@ using System;
 
 public class ScoreManager : MonoBehaviour
 {
-	int score = 1000;						// スコアを設定する変数
+	int score = 0;						// スコアを設定する変数
 	[SerializeField] Text scoreText;        // 残り時間を表示する変数
 
 	[SerializeField] private string m_DeviceName;	// デバイス
@@ -14,10 +14,13 @@ public class ScoreManager : MonoBehaviour
 	private int m_LastAudioPos;						// マイクのデバイスを保存しておく変数
 	private float m_AudioLevel;						// オーディオの音量
 
-	[SerializeField] private GameObject m_Cube;							// テストシーンで使用したキューブ(ゲームシーンにはないのでエラーが出る)
-	[SerializeField, Range(10, 100)] private float m_AmpGain = 10;
 
-	void Start()
+	// [SerializeField] private GameObject m_Cube;							// テストシーンで使用したキューブ(ゲームシーンにはないのでエラーが出る)
+	[SerializeField, Range(10, 100)] private float m_AmpGain = 10;
+	[SerializeField] public float threshold = 0.1f;     // しきい値
+
+
+    void Start()
 	{
 		string targetDevice = "";
 
@@ -39,14 +42,22 @@ public class ScoreManager : MonoBehaviour
 		float[] waveData = GetUpdatedAudio();
 		if (waveData.Length == 0) return;
 
-		m_AudioLevel = waveData.Average(Mathf.Abs);
-		m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * m_AudioLevel, 1);	// テストシーンで長方形を変形させている部分	
-		
-		////////////////////////////////////////////////////////////////////
-		// m_AmpGain や m_AudioLevel を用いてスコアの計算をする部分を実装 //
-		////////////////////////////////////////////////////////////////////
 
-		scoreText.text = $"{score}";			// 画面に表示されたスコアを更新していく処理
+        var firstValues = waveData.Take(10).Select(v => v.ToString("F3"));
+
+        m_AudioLevel = waveData.Average(Mathf.Abs);
+        // m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * m_AudioLevel, 1); // テストシーンで長方形を変形させている部分	
+
+        ////////////////////////////////////////////////////////////////////
+        // m_AmpGain や m_AudioLevel を用いてスコアの計算をする部分を実装 //
+        ////////////////////////////////////////////////////////////////////
+
+        if (m_AudioLevel > threshold)
+        {
+            score += (int)(m_AudioLevel * 100);
+        }
+
+        scoreText.text = $"{score}";			// 画面に表示されたスコアを更新していく処理
 	}
 
 	private float[] GetUpdatedAudio()

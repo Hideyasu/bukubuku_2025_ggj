@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bba34ba85b50452b97b6889efbf189b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DeviceName: "MacBook Air\u306E\u30DE\u30A4\u30AF"
+  m_DeviceName: "\u30DE\u30A4\u30AF\u914D\u5217 (Realtek(R) Audio)"
   m_Cube: {fileID: 1499369548}
   m_AmpGain: 10
 --- !u!1660057539 &9223372036854775807
