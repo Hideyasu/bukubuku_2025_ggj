@@ -9,11 +9,12 @@ public class ResultSceneManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        displayName.text = PhotonNetwork.NickName;
+        displayName.text = PhotonNetwork.NickName;   
     }
 
     public void OnClickBack()
     {
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene("LobbyScene");
+        PhotonNetwork.LeaveRoom();
     }
 }
