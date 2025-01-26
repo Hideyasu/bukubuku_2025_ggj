@@ -6,6 +6,10 @@ using Photon.Realtime;
 public class SelectDrinkSceneManager : MonoBehaviourPunCallbacks
 {
     public GameObject playButton;
+    public GameObject playerImage1;
+    public GameObject playerImage2;
+    public GameObject playerImage3;
+    public GameObject playerImage4;
 
     private void Start()
     {
@@ -16,19 +20,78 @@ public class SelectDrinkSceneManager : MonoBehaviourPunCallbacks
             switch (currentPlayerCount)
             {
                 case 1:
-                    Debug.Log("1");
+                    playerImage1.SetActive(true);
+                    playerImage2.SetActive(false);
+                    playerImage3.SetActive(false);
+                    playerImage4.SetActive(false);
                     break;
                 case 2:
-                    Debug.Log("2");
+                    playerImage1.SetActive(true);
+                    playerImage2.SetActive(true);
+                    playerImage3.SetActive(false);
+                    playerImage4.SetActive(false);
                     break;
                 case 3:
-                    Debug.Log("3");
+                    playerImage1.SetActive(true);
+                    playerImage2.SetActive(true);
+                    playerImage3.SetActive(true);
+                    playerImage4.SetActive(false);
                     break;
                 case 4:
-                    Debug.Log("4");
+                    playerImage1.SetActive(true);
+                    playerImage2.SetActive(true);
+                    playerImage3.SetActive(true);
+                    playerImage4.SetActive(true);
                     break;
                 default:
-                    Debug.Log("x");
+                    playerImage1.SetActive(false);
+                    playerImage2.SetActive(false);
+                    playerImage3.SetActive(false);
+                    playerImage4.SetActive(false);
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("Not in a room.");
+        }
+    }
+
+    private void Update() {
+        if (PhotonNetwork.InRoom) // ルームに参加している場合
+        {
+            int currentPlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+            switch (currentPlayerCount)
+            {
+                case 1:
+                    playerImage1.SetActive(true);
+                    playerImage2.SetActive(false);
+                    playerImage3.SetActive(false);
+                    playerImage4.SetActive(false);
+                    break;
+                case 2:
+                    playerImage1.SetActive(true);
+                    playerImage2.SetActive(true);
+                    playerImage3.SetActive(false);
+                    playerImage4.SetActive(false);
+                    break;
+                case 3:
+                    playerImage1.SetActive(true);
+                    playerImage2.SetActive(true);
+                    playerImage3.SetActive(true);
+                    playerImage4.SetActive(false);
+                    break;
+                case 4:
+                    playerImage1.SetActive(true);
+                    playerImage2.SetActive(true);
+                    playerImage3.SetActive(true);
+                    playerImage4.SetActive(true);
+                    break;
+                default:
+                    playerImage1.SetActive(false);
+                    playerImage2.SetActive(false);
+                    playerImage3.SetActive(false);
+                    playerImage4.SetActive(false);
                     break;
             }
         }
