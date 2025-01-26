@@ -9,7 +9,8 @@ public class ResultSceneManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        displayName.text = PhotonNetwork.NickName;   
+        displayName.text = PhotonNetwork.NickName;
+        PhotonNetwork.AutomaticallySyncScene = false;
     }
 
     public void OnClickBack()
