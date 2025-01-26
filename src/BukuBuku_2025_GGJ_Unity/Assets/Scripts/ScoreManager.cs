@@ -18,7 +18,9 @@ public class ScoreManager : MonoBehaviour
 	[SerializeField, Range(10, 100)] private float m_AmpGain = 10;
 	[SerializeField] public float threshold = 0.1f;
 
-public int Score
+	[SerializeField] private ParticleSystem particle;
+
+	public int Score
 	{
 		get { return score; } set { score = value;}
 	}
@@ -56,6 +58,11 @@ public int Score
 		if (m_AudioLevel > threshold)
 		{
 			score += (int)(m_AudioLevel * 100);
+			particle.Play();
+		}
+		else
+		{
+			particle.Stop();
 		}
 
 		scoreText.text = $"{score}";
