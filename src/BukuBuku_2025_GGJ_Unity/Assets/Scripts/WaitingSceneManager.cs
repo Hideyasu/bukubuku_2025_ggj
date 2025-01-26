@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class SelectDrinkSceneManager : MonoBehaviourPunCallbacks
 {
@@ -10,10 +11,13 @@ public class SelectDrinkSceneManager : MonoBehaviourPunCallbacks
     public GameObject playerImage2;
     public GameObject playerImage3;
     public GameObject playerImage4;
+    public TextMeshProUGUI displayName;
 
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        displayName.text = PhotonNetwork.NickName;
+
         if (PhotonNetwork.InRoom) // ルームに参加している場合
         {
             int currentPlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
@@ -56,7 +60,7 @@ public class SelectDrinkSceneManager : MonoBehaviourPunCallbacks
             Debug.Log("Not in a room.");
         }
     }
-
+    
     private void Update() {
         if (PhotonNetwork.InRoom) // ルームに参加している場合
         {
