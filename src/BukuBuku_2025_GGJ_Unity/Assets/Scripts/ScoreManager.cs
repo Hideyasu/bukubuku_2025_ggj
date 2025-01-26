@@ -18,10 +18,11 @@ public class ScoreManager : MonoBehaviour
 	[SerializeField, Range(10, 100)] private float m_AmpGain = 10;
 	[SerializeField] public float threshold = 0.1f;
 
-
+#if !UNITY_WEBGL
 	void Start()
 	{
 		string targetDevice = "";
+
 		foreach (var device in Microphone.devices)
 		{
 			Debug.Log($"Device Name: {device}");
@@ -88,4 +89,5 @@ public class ScoreManager : MonoBehaviour
 
 		return waveData;
 	}
+#endif
 }

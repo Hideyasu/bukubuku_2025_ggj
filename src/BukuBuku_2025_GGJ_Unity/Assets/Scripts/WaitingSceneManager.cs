@@ -9,20 +9,44 @@ public class SelectDrinkSceneManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        Debug.Log("this room's player is ");
-        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
-        Debug.Log("you are ");
-        Debug.Log(PhotonNetwork.IsMasterClient);
         PhotonNetwork.AutomaticallySyncScene = true;
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.InRoom) // ルームに参加している場合
         {
-            playButton.SetActive(true);
+            int currentPlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+            switch (currentPlayerCount)
+            {
+                case 1:
+                    Debug.Log("1");
+                    break;
+                case 2:
+                    Debug.Log("2");
+                    break;
+                case 3:
+                    Debug.Log("3");
+                    break;
+                case 4:
+                    Debug.Log("4");
+                    break;
+                default:
+                    Debug.Log("x");
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("Not in a room.");
         }
     }
 
     public void OnClickPlay()
     {
-        PhotonNetwork.LoadLevel("GameScene");
-        Debug.Log("MasterClient is changing the scene to: GameScene");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("GameScene");
+            Debug.Log("MasterClient is changing the scene to: GameScene");
+        }
+        else {
+            Debug.LogWarning("Only the MasterClient can change the scene.");
+        }
     }
 }
