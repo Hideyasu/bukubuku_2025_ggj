@@ -18,6 +18,11 @@ public class ScoreManager : MonoBehaviour
 	[SerializeField, Range(10, 100)] private float m_AmpGain = 10;
 	[SerializeField] public float threshold = 0.1f;
 
+public int Score
+	{
+		get { return score; } set { score = value;}
+	}
+
 #if !UNITY_WEBGL
 	void Start()
 	{

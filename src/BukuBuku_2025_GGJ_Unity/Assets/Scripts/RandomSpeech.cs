@@ -10,7 +10,7 @@ public class RandomSpeech : MonoBehaviour
 	Text speechText;
 
 	[SerializeField]
-	[Header("パネルオブジェクト")]
+	[Header("ふきだしオブジェクト")]
 	GameObject speechPanel;
 
 	[SerializeField]
@@ -22,10 +22,22 @@ public class RandomSpeech : MonoBehaviour
 	[Header("次に振り向くまでの時間")]
 	float nextWaitingTime = 10.0f;
 
+	// ふきだしが表示される時間
+	[SerializeField]
+	[Header("ふきだしが表示される時間")]
+	float speakingTime = 1.5f;
+
 	// タイマー
 	[SerializeField]
 	[Header("制限時間")]
-	private float limitTime = 60;		// 本来は制限時間をゲームマネージャーから取得したい
+	private float limitTime = 60;       // 本来は制限時間をゲームマネージャーから取得したい
+
+	bool isWatching = false;
+
+	public bool IsWatching()
+	{
+		return isWatching;
+	}
 
 	void Start()
     {
@@ -48,8 +60,18 @@ public class RandomSpeech : MonoBehaviour
 		while (nextWaitingTime > timer)
 		{
 			yield return null;               // 待機
-			timer += Time.deltaTime;                                          // タイマーの加算
+			timer += Time.deltaTime;         // タイマーの加算
 		}
+		//speechPanel.SetActive(true);
+		isWatching = true;
 		speechText.text = speeches.ElementAt(Random.Range(0, speeches.Count()));    // ランダムなテキストを反映
+		timer = 0;
+		while (speakingTime > timer)
+		{
+			yield return null;               // 待機
+			timer += Time.deltaTime;         // タイマーの加算
+		}
+		//speechPanel.SetActive(false);
+		isWatching = false;
 	}
 }
