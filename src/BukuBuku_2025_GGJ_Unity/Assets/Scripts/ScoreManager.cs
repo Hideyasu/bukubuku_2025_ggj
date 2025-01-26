@@ -21,20 +21,23 @@ public class ScoreManager : MonoBehaviour
 #if !UNITY_WEBGL
 	void Start()
 	{
-		string targetDevice = "";
+        threshold = PlayerPrefs.GetFloat("Threshold", threshold);
+        m_DeviceName = PlayerPrefs.GetString("SelectedMic", m_DeviceName); // add
 
-		foreach (var device in Microphone.devices)
-		{
-			Debug.Log($"Device Name: {device}");
-			if (device.Contains(m_DeviceName))
-			{
-				targetDevice = device;
-			}
-		}
+        string targetDevice = "";
 
-		Debug.Log($"=== Device Set: {targetDevice} ===");
-		m_AudioClip = Microphone.Start(targetDevice, true, 10, 48000);
-	}
+        foreach (var device in Microphone.devices)
+        {
+            Debug.Log($"Device Name: {device}");
+            if (device.Contains(m_DeviceName))
+            {
+                targetDevice = device;
+            }
+        }
+
+        Debug.Log($"=== Device Set: {targetDevice} ===");
+        m_AudioClip = Microphone.Start(targetDevice, true, 10, 48000);
+    }
 
 	void Update()
 	{
