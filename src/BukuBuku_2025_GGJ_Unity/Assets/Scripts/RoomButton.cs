@@ -40,7 +40,7 @@ public class RoomButton : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        SceneManager.LoadScene("SelectDrinkScene");
+        SceneManager.LoadScene("WaitingScene");
     }
 
     public void SetPlayerCount(int playerCount)

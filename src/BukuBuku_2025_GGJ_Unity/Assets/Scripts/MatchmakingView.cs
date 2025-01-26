@@ -61,7 +61,7 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     {
         // ルームへの参加が成功したら、UIを非表示にする
         //gameObject.SetActive(false);
-        Debug.Log(" Room go");
+        Debug.Log("Room go");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
